@@ -10,10 +10,11 @@ pipeline {
         }
 
         stage('Checkout') {
-            steps {
-                git url: 'https://github.com/Nadeeshasanjaya/devops-projecct2.git'
-            }
-        }
+    steps {
+        git branch: 'main',
+            url: 'https://github.com/Nadeeshasanjaya/devops-projecct2.git'
+    }
+}
 
         stage('Build') {
             steps {
