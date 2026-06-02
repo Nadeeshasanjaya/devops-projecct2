@@ -10,7 +10,7 @@ pipeline {
             }
         }
 
-        stage('Build Maven Project') {
+        stage('Build') {
             steps {
                 sh 'mvn clean package -DskipTests'
             }
@@ -21,6 +21,5 @@ pipeline {
                 sh 'docker build -t devops-project2:latest .'
             }
         }
-
     }
 }
