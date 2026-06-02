@@ -3,23 +3,16 @@ pipeline {
 
     stages {
 
-        stage('Clean Workspace') {
+        stage('Checkout') {
             steps {
-                cleanWs()
+                git branch: 'main',
+                    url: 'https://github.com/Nadeeshasanjaya/devops-projecct2.git'
             }
         }
 
-        stage('Checkout') {
-    steps {
-        git branch: 'main',
-            url: 'https://github.com/Nadeeshasanjaya/devops-projecct2.git'
-    }
-}
-
-        stage('Build') {
+        stage('Build Maven Project') {
             steps {
-                sh 'chmod +x mvnw'
-                sh './mvnw clean package -DskipTests'
+                sh 'mvn clean package -DskipTests'
             }
         }
 
@@ -28,5 +21,6 @@ pipeline {
                 sh 'docker build -t devops-project2:latest .'
             }
         }
+
     }
 }
