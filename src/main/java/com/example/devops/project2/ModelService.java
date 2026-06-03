@@ -10,6 +10,7 @@ public class ModelService {
     List<Model> models = new ArrayList<>();
 
     public List<Model> getAllModels() {
+         System.out.println("API called");
         return models;
     }
 
