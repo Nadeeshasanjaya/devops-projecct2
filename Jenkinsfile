@@ -10,16 +10,23 @@ pipeline {
             }
         }
 
-        stage('Build') {
-    steps {
-        sh 'mvn clean package -DskipTests'
-    }
-}
+       stage('Build Maven Project') {
+            steps {
+                sh 'mvn clean package -DskipTests'
+            }
+        }
 
         stage('Docker Build') {
             steps {
-                sh 'docker build -t devops-project2:latest .'
+                sh 'docker build -t devops-project2 .'
             }
         }
+
+        stage('Run Container') {
+            steps {
+                sh 'docker run -d -p 8081:8081 devops-project2'
+            }
+        }
+
     }
 }
