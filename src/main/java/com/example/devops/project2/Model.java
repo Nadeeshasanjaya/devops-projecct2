@@ -1,14 +1,20 @@
 package com.example.devops.project2;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "models")
 public class Model {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String title;
     private String status;
 
-    // Default constructor (IMPORTANT)
-    public Model() {}
+    public Model() {
+    }
 
     public Model(int id, String title, String status) {
         this.id = id;
