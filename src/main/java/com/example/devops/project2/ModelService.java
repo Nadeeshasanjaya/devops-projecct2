@@ -21,10 +21,7 @@ public class ModelService {
 
     public void update(int id, Model model) {
         model.setId(id);
-        repository.save(model);
-
-
-        
+        repository.save(model);        
     }
 
     public void delete(int id) {
