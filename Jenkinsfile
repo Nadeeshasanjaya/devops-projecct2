@@ -18,6 +18,20 @@ pipeline {
        sh '''
         docker run --rm \
         -v $WORKSPACE:/app \
+        -w /app \
+        maven:3.9.6-eclipse-temurin-17 \
+        find /app -name "pom.xml" -type f
+        '''
+       sh '''
+        docker run --rm \
+        -v $WORKSPACE:/app \
+        -w /app \
+        maven:3.9.6-eclipse-temurin-17 \
+        ls -la /app/devops-project2
+        '''
+       sh '''
+        docker run --rm \
+        -v $WORKSPACE:/app \
         -w /app/devops-project2 \
         maven:3.9.6-eclipse-temurin-17 \
         mvn clean package -DskipTests
