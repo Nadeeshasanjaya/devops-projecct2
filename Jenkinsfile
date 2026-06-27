@@ -6,11 +6,11 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/Nadeeshasanjaya/devops-projecct2.git'
+                url: 'https://github.com/Nadeeshasanjaya/devops-projecct2.git'
             }
         }
 
-       stage('Build Maven Project') {
+        stage('Build Maven') {
             steps {
                 sh 'mvn clean package -DskipTests'
             }
@@ -22,11 +22,17 @@ pipeline {
             }
         }
 
-        stage('Run Container') {
+        stage('Stop Old Container') {
             steps {
-                sh 'docker run -d -p 8081:8081 devops-project2'
+                sh 'docker stop devops-app || true'
+                sh 'docker rm devops-app || true'
             }
         }
 
+        stage('Run App') {
+            steps {
+                sh 'docker run -d --name devops-app -p 8082:8080 devops-project2'
+            }
+        }
     }
 }
