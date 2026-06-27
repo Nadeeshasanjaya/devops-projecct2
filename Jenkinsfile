@@ -20,14 +20,14 @@ pipeline {
         -v $WORKSPACE:/app \
         -w /app \
         maven:3.9.6-eclipse-temurin-17 \
-        ls -la /app/devops-project2/devops-project2
+        find /app -type f -name "pom.xml"
         '''
        sh '''
         docker run --rm \
         -v $WORKSPACE:/app \
-        -w /app/devops-project2/devops-project2 \
+        -w /app \
         maven:3.9.6-eclipse-temurin-17 \
-        mvn clean package -DskipTests
+        bash -c "tree /app -L 3 2>/dev/null || find /app -maxdepth 3 -type f | head -20"
         '''
     }
 }
