@@ -21,6 +21,13 @@ pipeline {
         echo ""
         echo "Checking for pom.xml:"
         find $WORKSPACE -name "pom.xml" -type f
+        echo ""
+        echo "Inside Docker container:"
+        docker run --rm \
+        -v $WORKSPACE:/app \
+        -w /app \
+        maven:3.9.6-eclipse-temurin-17 \
+        ls -la /app
         '''
        sh '''
         docker run --rm \
