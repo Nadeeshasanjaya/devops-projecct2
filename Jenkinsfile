@@ -11,15 +11,13 @@ pipeline {
         }
 
         stage('Build Maven') {
-            agent {
-                docker {
-                    image 'maven:3.9.6-eclipse-temurin-17'
-                }
-            }
-            steps {
-                sh 'mvn clean package -DskipTests'
-            }
-        }
+    tools {
+        maven 'M3'
+    }
+    steps {
+        sh 'mvn clean package -DskipTests'
+    }
+}
 
         stage('Docker Build') {
             steps {
