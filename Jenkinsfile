@@ -16,6 +16,13 @@ pipeline {
     }
     steps {
        sh '''
+        echo "Listing workspace contents:"
+        ls -la $WORKSPACE
+        echo ""
+        echo "Checking for pom.xml:"
+        find $WORKSPACE -name "pom.xml" -type f
+        '''
+       sh '''
         docker run --rm \
         -v $WORKSPACE:/app \
         -w /app \
