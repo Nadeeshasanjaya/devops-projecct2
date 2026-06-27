@@ -20,21 +20,14 @@ pipeline {
         -v $WORKSPACE:/app \
         -w /app \
         maven:3.9.6-eclipse-temurin-17 \
-        find /app -type f -name "pom.xml"
-        '''
-       sh '''
-        docker run --rm \
-        -v $WORKSPACE:/app \
-        -w /app \
-        maven:3.9.6-eclipse-temurin-17 \
-        bash -c "tree /app -L 3 2>/dev/null || find /app -maxdepth 3 -type f | head -20"
+        bash -c "ls -laR /app"
         '''
     }
 }
 
         stage('Docker Build') {
             steps {
-                sh 'docker build -t devops-project2 devops-project2/devops-project2'
+                sh 'docker build -t devops-project2 .'
             }
         }
 
