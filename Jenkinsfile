@@ -34,7 +34,7 @@ pipeline {
 
         stage('Run App') {
             steps {
-                sh 'docker run -d --name devops-app -p 8082:8080 devops-project2'
+                sh 'docker run -d --name devops-app -p 8082:8082 -e SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/devopsdb -e SPRING_DATASOURCE_USERNAME=user -e SPRING_DATASOURCE_PASSWORD=pass devops-project2'
             }
         }
     }

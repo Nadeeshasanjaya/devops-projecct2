@@ -13,6 +13,7 @@ public class Controller {
     private ModelService service;
 
     
+
     @GetMapping("/models")
     public List<Model> getAllModels() {
         return service.getAllModels();
