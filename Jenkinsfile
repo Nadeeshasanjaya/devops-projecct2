@@ -15,13 +15,7 @@ pipeline {
         maven 'M3'
     }
     steps {
-       sh '''
-        docker run --rm \
-        -v $WORKSPACE:/app \
-        -w /app \
-        maven:3.9.6-eclipse-temurin-17 \
-        bash -c "ls -laR /app"
-        '''
+       sh './mvnw -B clean package -DskipTests'
     }
 }
 
