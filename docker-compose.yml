@@ -13,6 +13,7 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
 
+
   app:
     build: .
     container_name: devops-app
